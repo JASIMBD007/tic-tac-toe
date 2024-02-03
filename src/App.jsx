@@ -1,11 +1,20 @@
 import './App.css'
+import Board from './components/Board/Board';
 
 function App () {
 
-
+  /*
+  Game {
+  -> Board
+  
+     -> Square
+   
+   -> History
+  }
+  */
   return (
     <>
-      <h1 className='text-current text-red-600 font-bold'>Tic-Tac-Toe</h1>
+      <Board />
     </>
   )
 }
