@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Board from '../Board/Board'
+import History from '../History/History';
 
 const Game = () => {
     const [history, SetHistory] = useState([Array(9).fill(null)]);
@@ -15,29 +16,15 @@ const Game = () => {
         setCurrentMove(nextHistory.length - 1);
     };
 
-    const moves = history.map((squares, move) => {
-        let description;
-        if (move > 0) {
-            description = `Go to the move # ${move}`
-        }
-        else {
-            description = `Go to start the Game!`
-        }
-
-        return (
-            <li key={move}>
-                <button onClick={() => handleJumpTo(move)}>{description}</button>
-            </li>
-        );
-    });
 
     const handleJumpTo = (move) => {
         setCurrentMove(move);
         setXIsNext(move % 2 === 0);
     };
     return (
-        <div>
-            <div>
+        <div className='flex justify-center p-4
+        '>
+            <div className='mr-16'>
                 <Board
                     xIsNext={xIsNext}
                     squares={currentSquares}
@@ -45,7 +32,7 @@ const Game = () => {
                 />
             </div>
             <div>
-                <ol>{moves}</ol>
+                <History history={history} currentMove={currentMove} handleJumpTo={handleJumpTo} />
             </div>
         </div>
     )
