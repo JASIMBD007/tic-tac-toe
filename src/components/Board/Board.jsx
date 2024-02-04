@@ -22,9 +22,7 @@ const calculateWinner = (squares) => {
 
     return null;
 };
-const Board = () => {
-    const [squares, SetSquares] = useState(Array(9).fill(null));
-    const [xIsNext, setXIsNext] = useState(true);
+const Board = ({ xIsNext, squares, onPlay }) => {
 
     const winner = calculateWinner(squares);
     let status;
@@ -41,7 +39,8 @@ const Board = () => {
             return;
         }//after getting winner we will not be able to put any cross or O
 
-        const nextSquares = squares.slice();//new array created
+        const nextSquares = squares.slice();
+        console.log(nextSquares);//new array created
 
         if (xIsNext) {
             nextSquares[i] = 'X';
@@ -49,8 +48,9 @@ const Board = () => {
         else {
             nextSquares[i] = 'O';
         }
-        SetSquares(nextSquares);
-        setXIsNext(!xIsNext);
+        onPlay(nextSquares);
+        // SetSquares(nextSquares);
+        // setXIsNext(!xIsNext);
         // squares[0] = 'X';
         // SetSquares([...squares]);
 
